@@ -1,38 +1,27 @@
-import './App.css';
-import { useState } from 'react';
-import Home from './components/Home.jsx';
-import AboutUs from './components/AboutUs.jsx';
-import Navbar from './components/Navbar.jsx';
-import Products from './components/Products.jsx'; // Import the Products component
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import 'leaflet/dist/leaflet.css';
+
+import Home from "./components/Home.jsx";
+import AboutUs from "./components/AboutUs.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Products from "./components/Products.jsx";
+import Jumbotron from "./components/Jumbotron.jsx";
+import OrderNow from "./components/OrderNow.jsx"; // Add this
 
 function App() {
-  const [component, setComponent] = useState(<Home />);
-
-  function setMenu(menu) {
-    switch (menu) {
-      case "Home":
-        setComponent(<Home />);
-        break;
-      case "Products":
-        setComponent(<Products />);
-        break;
-      case "About Us":
-        setComponent(<AboutUs />);
-        break;
-
-      default:
-        setComponent(<Home />);
-        break;
-    }
-  }
-
   return (
-    <div>
-      <Navbar setMenu={setMenu} />
+    <Router>
+      <Navbar /> {/* Remove setMenu */}
       <div className="container mt-4">
-        {component}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/order" element={<OrderNow />} /> {/* Order Now route */}
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -1,88 +1,96 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../App.css"; // Or AboutUs.css if separated
 
-function AboutUs () {
+function AboutUs() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">About Us</h1>
-      <p className="text-center mx-auto mb-5" style={{ maxWidth: "700px" }}>
-        Welcome to Food Hub! We are passionate about serving delicious, high-quality meals
-        crafted with the freshest ingredients. Our mission is to bring people together 
-        through amazing food experiences.
-      </p>
-
-      {/* Mission & Vision */}
-      <div className="row g-4 mb-5">
-        <div className="col-md-6">
-          <div className="card h-100 shadow">
-            <div className="card-body">
-              <h3 className="card-title">Our Mission</h3>
-              <p className="card-text">
-                To deliver exceptional culinary experiences that delight our customers
-                and support local communities.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="card h-100 shadow">
-            <div className="card-body">
-              <h3 className="card-title">Our Vision</h3>
-              <p className="card-text">
-                To be the leading restaurant in innovation, quality, and sustainability, 
-                loved by food enthusiasts everywhere.
-              </p>
-            </div>
+    <div>
+      {/* Parallax Section */}
+      <div className="parallax-bg">
+        <div className="parallax-overlay">
+          <div data-aos="zoom-in">
+            <h1 className="display-4 fw-bold">About Food Hub</h1>
+            <p className="lead">Taste the tradition. Feel the love.</p>
           </div>
         </div>
       </div>
 
-      {/* Team */}
-      <h2 className="text-center mb-4">Meet Our Team</h2>
-      <div className="row g-4 justify-content-center">
-        <div className="col-sm-6 col-md-4 col-lg-3">
-          <div className="card text-center shadow h-100">
-            <img src="https://via.placeholder.com/120" className="card-img-top rounded-circle mx-auto mt-4 img-thumbnail" style={{ width: "120px", height: "120px", objectFit: "cover" }} alt="Chef John" />
-            <div className="card-body">
-              <h5 className="card-title">Chef John</h5>
-              <p className="card-text text-muted">Head Chef</p>
+      {/* Main Content Section */}
+      <div className="container py-5">
+        {/* Intro */}
+        <div className="text-center mx-auto mb-5" style={{ maxWidth: "800px" }} data-aos="fade-up">
+          <p className="lead">
+            At <strong>Food Hub</strong>, we believe food is more than just a meal — it’s an experience. 
+            Born from a passion for fresh, locally-sourced ingredients and authentic flavors, 
+            we’re on a mission to serve happiness on every plate.
+          </p>
+        </div>
+
+        {/* Mission & Vision */}
+        <div className="row g-4 mb-5">
+          <div className="col-md-6" data-aos="fade-right">
+            <div className="card h-100 shadow-lg border-0">
+              <div className="card-body">
+                <h3 className="card-title text-primary fw-bold">Our Mission</h3>
+                <p>
+                  To redefine dining by offering freshly prepared meals with heart, 
+                  bringing communities together through quality, consistency, and 
+                  warmth in every interaction.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="col-sm-6 col-md-4 col-lg-3">
-          <div className="card text-center shadow h-100">
-            <img src="https://via.placeholder.com/120" className="card-img-top rounded-circle mx-auto mt-4 img-thumbnail" style={{ width: "120px", height: "120px", objectFit: "cover" }} alt="Emma" />
-            <div className="card-body">
-              <h5 className="card-title">Emma</h5>
-              <p className="card-text text-muted">Operations Manager</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="col-sm-6 col-md-4 col-lg-3">
-          <div className="card text-center shadow h-100">
-            <img src="https://via.placeholder.com/120" className="card-img-top rounded-circle mx-auto mt-4 img-thumbnail" style={{ width: "120px", height: "120px", objectFit: "cover" }} alt="Liam" />
-            <div className="card-body">
-              <h5 className="card-title">Liam</h5>
-              <p className="card-text text-muted">Customer Experience</p>
+          <div className="col-md-6" data-aos="fade-left">
+            <div className="card h-100 shadow-lg border-0">
+              <div className="card-body">
+                <h3 className="card-title text-success fw-bold">Our Vision</h3>
+                <p>
+                  To become the most loved and trusted name in Sri Lankan food culture — 
+                  inspiring moments of togetherness through outstanding culinary experiences.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="col-sm-6 col-md-4 col-lg-3">
-          <div className="card text-center shadow h-100">
-            <img src="https://via.placeholder.com/120" className="card-img-top rounded-circle mx-auto mt-4 img-thumbnail" style={{ width: "120px", height: "120px", objectFit: "cover" }} alt="Liam" />
-            <div className="card-body">
-              <h5 className="card-title">Liam</h5>
-              <p className="card-text text-muted">Customer Experience</p>
+        {/* Team Section */}
+        <h2 className="text-center mb-4 fw-bold" data-aos="zoom-in">Meet Our Team</h2>
+        <div className="row g-4 justify-content-center">
+          {[
+            { name: "Chef John", role: "Head Chef", desc: "The creative mind behind our signature dishes." },
+            { name: "Emma Silva", role: "Operations Manager", desc: "Ensures smooth flow from kitchen to guest." },
+            { name: "Liam Perera", role: "Customer Experience", desc: "Delivers warmth with every interaction." },
+            { name: "Nisha Fernando", role: "Marketing Lead", desc: "Spreads our flavor through the world." }
+          ].map((member, index) => (
+            <div className="col-sm-6 col-md-4 col-lg-3" key={index} data-aos="zoom-in" data-aos-delay={index * 100}>
+              <div className="card text-center h-100 border-0 shadow-lg team-card">
+                <img
+                  src={`https://via.placeholder.com/120?text=${member.name.split(" ")[0]}`}
+                  alt={member.name}
+                  className="rounded-circle mx-auto mt-4 img-thumbnail"
+                  style={{ width: "120px", height: "120px", objectFit: "cover" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title fw-bold">{member.name}</h5>
+                  <p className="text-muted">{member.role}</p>
+                  <p className="card-text" style={{ fontSize: "0.9rem" }}>{member.desc}</p>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-5" data-aos="fade-up">
+          <p className="text-muted fst-italic">“Bringing people together, one bite at a time.”</p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default AboutUs;
